@@ -31,6 +31,25 @@ public class BinarySearchTree {
 		return root;
 	}
 
+
+	static int find(TreeNode root, int val) {
+		if (root == null) {
+			return -1;
+		}
+
+		while (root != null) {
+			if (val < root.val) {
+				root = root.left;
+			} else if (val > root.val) {
+				root = root.right;
+			} else {
+				return root.val;
+			}
+		}
+
+		return -1;
+	}
+
 	/**
 	 * 递归中序遍历
 	 * @param root
@@ -178,25 +197,9 @@ public class BinarySearchTree {
 		insert(root, 70);
 		insert(root, 90);
 
-		traverseInOrderRecursively(root);
-		System.out.println();
-		System.out.println("----------");
-		traverseInOrder(root);
-		System.out.println();
-		System.out.println("----------");
-
-		traversePreOrderRecursively(root);
-		System.out.println();
-		System.out.println("----------");
-		traversePreOrder(root);
-		System.out.println();
-		System.out.println("----------");
-
-
-		traversePostOrderRecursively(root);
-		System.out.println();
-		System.out.println("----------");
-		traversePostOrder(root);
+		System.out.println(find(root, 100));
+		System.out.println(find(root, 50));
+		System.out.println(find(root, 90));
 	}
 
 
