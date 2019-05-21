@@ -30,17 +30,56 @@ public class BinarySearch {
         return -1;
     }
 
+
+	/**
+	 *
+	 */
+	public static int firstIndexOf(int[] a, int key) {
+		int low = 0;
+		int high = a.length - 1;
+		while (low <= high) {
+			int middle = low + (high - low) / 2;
+			if (a[middle] >= key) {
+				high = middle - 1;
+			} else {
+				low = middle + 1;
+			}
+		}
+
+		if (low < a.length && a[low] == key) {
+			return low;
+		}
+
+		return -1;
+	}
+
+	public static int lastIndexOf(int[] a, int key) {
+		int low = 0;
+		int high = a.length - 1;
+		while (low <= high) {
+			int middle = low + (high - low) / 2;
+			if (a[middle] <= key) {
+				low = middle + 1;
+			} else {
+				high = middle - 1;
+			}
+		}
+
+		if (high >= 0 && a[high] == key) {
+			return high;
+		}
+
+		return -1;
+	}
+
     public static void main(String[] args) {
-        In in = new In(args[0]);
-        int[] whiteList = in.readAllInts();
+		System.out.println(firstIndexOf(new int[]{1,2,3}, 6));
+		System.out.println(firstIndexOf(new int[]{1,2,3}, 3));
+		System.out.println(firstIndexOf(new int[]{1,2,3,3,3,4}, 3));
 
-        Arrays.sort(whiteList);
-
-        while (!StdIn.isEmpty()) {
-            int key = StdIn.readInt();
-            if(indexOf(whiteList, key) == -1) {
-                StdOut.println(key);
-            }
-        }
+		System.out.println(lastIndexOf(new int[]{1,2,2,3,3,4}, 3));
+		System.out.println(lastIndexOf(new int[]{1,2,3,4}, 3));
+		System.out.println(lastIndexOf(new int[]{1,1,1,1,1}, 1));
+		System.out.println(lastIndexOf(new int[]{1,2,3,4,5}, 5));
     }
 }
